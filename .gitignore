@@ -1,0 +1,6 @@
+echo __pycache__/ > .gitignore
+echo *.pyc >> .gitignore
+echo htmlcov/ >> .gitignore
+echo .coverage >> .gitignore
+echo .pytest_cache/ >> .gitignore
+echo *.pdf >> .gitignore
