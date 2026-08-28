@@ -1,7 +1,6 @@
 """
-Pacote src - Código fonte da Loja Virtual
+Pacote src - E-commerce e Testes
 """
-
 from .carrinho import CarrinhoDeCompras
 from .estoque import Estoque
 from .pagamento import Pagamento, MetodoPagamento, StatusPagamento

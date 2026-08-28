@@ -1,60 +1,57 @@
 """
-Testes Unitários para CarrinhoDeCompras
+Nível 1: Testes Unitários Isolados com Mocks
 """
-
 import pytest
 from decimal import Decimal
 from unittest.mock import Mock
-
 from src.carrinho import CarrinhoDeCompras
 from src.estoque import Estoque
+from src.pagamento import Pagamento, MetodoPagamento, StatusPagamento
 
-# Marca TODOS os testes deste módulo como testes UNITÁRIOS.
-# Isso é o que permite rodar apenas estes testes com: pytest -m unit -v
 pytestmark = pytest.mark.unit
 
 
 class TestCarrinhoUnitario:
     @pytest.fixture
-    def estoque_stub(self):
-        estoque = Mock(spec=Estoque)
-        estoque.verificar_disponibilidade.return_value = True
-        estoque.obter_preco.return_value = Decimal("50.00")
-        return estoque
-    
-    @pytest.fixture
-    def carrinho(self, estoque_stub):
-        return CarrinhoDeCompras(estoque_stub)
-    
-    def test_adicionar_item_com_sucesso(self, carrinho):
-        resultado = carrinho.adicionar("SKU-001", 2, Decimal("50.00"))
-        assert resultado is True
+    def setup_mocks(self):
+        estoque_stub = Mock(spec=Estoque)
+        estoque_stub.verificar_disponibilidade.return_value = True
+        estoque_stub.obter_preco.return_value = Decimal("4500.00")
+        estoque_stub.obter_nome.return_value = "Notebook Gamer"
+        
+        pagamento_mock = Mock(spec=Pagamento)
+        pagamento_mock.processar.return_value = {
+            "sucesso": True,
+            "status": StatusPagamento.APROVADO,
+            "transacao_id": "TRX-UNIT-999"
+        }
+        carrinho = CarrinhoDeCompras(estoque_stub, pagamento_mock)
+        return carrinho, estoque_stub, pagamento_mock
+
+    def test_adicionar_item_com_sucesso(self, setup_mocks):
+        carrinho, _, _ = setup_mocks
+        assert carrinho.adicionar("SKU-NOTE-01", 1) is True
         assert carrinho.quantidade_itens() == 1
-    
-    def test_calcular_total_com_dois_itens(self, carrinho):
-        carrinho.adicionar("SKU-001", 2, Decimal("50.00"))
-        carrinho.adicionar("SKU-002", 1, Decimal("30.00"))
-        total = carrinho.calcular_total()
-        assert total == Decimal("130.00")
-    
-    def test_calcular_total_sem_itens(self, carrinho):
-        total = carrinho.calcular_total()
-        assert total == Decimal("0")
-    
-    def test_aplicar_desconto_percentual(self, carrinho):
-        carrinho.adicionar("SKU-001", 2, Decimal("100.00"))
-        carrinho.aplicar_desconto(Decimal("10"))
-        total = carrinho.calcular_total()
-        assert total == Decimal("180.00")
-    
-    def test_remover_item(self, carrinho):
-        carrinho.adicionar("SKU-001", 2, Decimal("50.00"))
-        carrinho.adicionar("SKU-002", 1, Decimal("30.00"))
-        removido = carrinho.remover("SKU-001")
-        assert removido is True
-        assert carrinho.quantidade_itens() == 1
-    
-    def test_limpar_carrinho(self, carrinho):
-        carrinho.adicionar("SKU-001", 2, Decimal("50.00"))
+
+    def test_calcular_total_com_desconto(self, setup_mocks):
+        carrinho, _, _ = setup_mocks
+        carrinho.adicionar("SKU-NOTE-01", 2, Decimal("4500.00")) # R$ 9000
+        carrinho.aplicar_desconto(Decimal("10")) # 10% = R$ 8100
+        assert carrinho.calcular_total() == Decimal("8100.00")
+
+    def test_rejeitar_quantidade_negativa_ou_zero(self, setup_mocks):
+        carrinho, _, _ = setup_mocks
+        with pytest.raises(ValueError, match="Quantidade deve ser maior que zero"):
+            carrinho.adicionar("SKU-MOUS-02", 0)
+
+    def test_rejeitar_desconto_invalido(self, setup_mocks):
+        carrinho, _, _ = setup_mocks
+        with pytest.raises(ValueError, match="Percentual deve estar entre 0 e 100"):
+            carrinho.aplicar_desconto(Decimal("150"))
+
+    def test_limpar_carrinho(self, setup_mocks):
+        carrinho, _, _ = setup_mocks
+        carrinho.adicionar("SKU-NOTE-01", 1)
         carrinho.limpar()
         assert carrinho.quantidade_itens() == 0
+        assert carrinho.calcular_total() == Decimal("0")

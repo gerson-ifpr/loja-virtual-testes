@@ -1,7 +1,6 @@
 """
-Módulo Pagamento - Processa pagamentos da loja virtual
+Módulo Pagamento - Processa transações e estornos
 """
-
 from decimal import Decimal
 from typing import Optional, Dict, Any
 from enum import Enum
@@ -33,16 +32,22 @@ class Pagamento:
         self._id_counter += 1
         transacao_id = f"TRX-{self._id_counter:06d}"
         if valor <= 0:
-            return {"sucesso": False, "transacao_id": transacao_id,
-                    "status": StatusPagamento.RECUSADO, "motivo": "Valor inválido"}
-        aprovado = valor <= Decimal("10000")
+            return {
+                "sucesso": False,
+                "transacao_id": transacao_id,
+                "status": StatusPagamento.RECUSADO,
+                "motivo": "Valor inválido"
+            }
+        
+        # Regra de limite simulada: compras acima de R$ 15.000 são recusadas
+        aprovado = valor <= Decimal("15000.00")
         transacao = {
             "transacao_id": transacao_id,
             "valor": valor,
             "metodo": metodo.value,
             "dados": dados or {},
             "status": StatusPagamento.APROVADO if aprovado else StatusPagamento.RECUSADO,
-            "motivo": None if aprovado else "Valor acima do limite"
+            "motivo": None if aprovado else "Valor acima do limite permitido"
         }
         self._transacoes[transacao_id] = transacao
         return transacao
