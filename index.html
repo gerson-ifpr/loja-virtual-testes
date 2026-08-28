@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Completo: E-Commerce & Pirâmide com 4 Níveis de Teste</title>
+    <title>Guia Completo: E-Commerce & 4 Níveis de Teste de Software</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #e8ecf1; color: #1a1a2e; line-height: 1.7; font-size: 18px; }
@@ -13,7 +13,7 @@
         .header { background: linear-gradient(135deg, #1a2a5c, #0f1f3d); color: #ffffff; padding: 60px 30px; text-align: center; border-radius: 16px; margin-bottom: 40px; box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
         .header h1 { font-size: 3.0rem; font-weight: 800; margin-bottom: 12px; }
         .header h1 span { color: #ffb347; }
-        .header p { font-size: 1.35rem; opacity: 0.92; max-width: 800px; margin: 0 auto; }
+        .header p { font-size: 1.35rem; opacity: 0.92; max-width: 850px; margin: 0 auto; }
         .badge { display: inline-block; background: #ff6b4a; color: #fff; padding: 6px 24px; border-radius: 30px; font-size: 0.95rem; font-weight: 700; margin-top: 15px; }
 
         /* NAVEGAÇÃO */
@@ -47,7 +47,6 @@
         .terminal .output { color: #e8f0fe; }
         .terminal .comment { color: #8a9bb5; font-style: italic; }
         .terminal .pass { color: #7ddf9a; font-weight: 700; }
-        .terminal .fail { color: #ff8a80; font-weight: 700; }
 
         /* CODE BLOCK & HIGHLIGHT */
         .code-block { background: #0d1a2e; color: #e8f0fe; padding: 22px; border-radius: 12px; font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 0.95rem; overflow-x: auto; white-space: pre; line-height: 1.8; border: 1px solid #2a4a6a; min-height: 140px; }
@@ -55,7 +54,6 @@
         .code-block .py-str { color: #7ddf9a; }
         .code-block .py-cmt { color: #8a9bb5; font-style: italic; }
         .code-block .py-fn { color: #82b1ff; font-weight: 600; }
-        .code-block .py-num { color: #ffab91; }
         .code-block .py-self { color: #d8b4fe; font-style: italic; }
         .code-block .line-no { display: inline-block; width: 2.2em; color: #4a6a94; user-select: none; text-align: right; margin-right: 1.2em; }
 
@@ -86,10 +84,13 @@
         .alert-warning { background: #fff8e1; border-left: 6px solid #f57f17; color: #6a4a1a; }
         .alert-success { background: #dff0d8; border-left: 6px solid #2d7d46; color: #1a4a2a; }
 
-        /* STEPS */
+        /* STEPS & CARDS DE CONCEITO */
         .step { display: flex; gap: 15px; margin: 15px 0; padding: 16px 20px; background: #f0f4fa; border-radius: 10px; border-left: 5px solid #2c3e7a; }
         .step .number { background: #2c3e7a; color: #fff; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; }
         .step .content { flex: 1; }
+
+        .concept-card { background: #f8fafc; border: 1px solid #dce2ec; border-radius: 12px; padding: 20px; margin: 15px 0; }
+        .concept-card h4 { color: #1a2a5c; margin-bottom: 8px; font-size: 1.15rem; }
 
         /* FOOTER */
         .footer { text-align: center; padding: 35px 0 15px; color: #5a6a7a; border-top: 2px solid #dce2ec; margin-top: 35px; font-size: 1.0rem; }
@@ -106,21 +107,56 @@
     </div>
 
     <div class="nav-tabs">
-        <button class="tab-link active" onclick="openTab(event, 'catalogo')">🛒 Catálogo (20 Itens)</button>
+        <button class="tab-link active" onclick="openTab(event, 'conceitos')">🧠 Por Que Testamos?</button>
+        <button class="tab-link" onclick="openTab(event, 'catalogo')">🛒 Catálogo (20 Itens)</button>
         <button class="tab-link" onclick="openTab(event, 'estrutura')">📁 Estrutura</button>
-        <button class="tab-link" onclick="openTab(event, 'niveis')">🧪 Os 4 Níveis de Teste</button>
+        <button class="tab-link" onclick="openTab(event, 'niveis')">🧪 A Pirâmide de Testes</button>
         <button class="tab-link" onclick="openTab(event, 'comandos')">💻 Comandos por OS</button>
-        <button class="tab-link" onclick="openTab(event, 'arquivos')">📄 Arquivos & Downloads</button>
         <button class="tab-link" onclick="openTab(event, 'troubleshooting')">⚠️ Troubleshooting (PATH)</button>
+        <button class="tab-link" onclick="openTab(event, 'arquivos')">📄 Arquivos & Downloads</button>
     </div>
 
     <!-- ============================================================ -->
-    <!-- TAB 1: CATÁLOGO -->
+    <!-- TAB 1: CONCEITOS E POR QUE TESTAMOS -->
     <!-- ============================================================ -->
-    <div id="catalogo" class="tab-content active">
+    <div id="conceitos" class="tab-content active">
+        <div class="card">
+            <h2>🧠 Por que testamos e o que representa cada nível?</h2>
+            <p>Testar software não é apenas verificar se o código "funciona", mas garantir que ele continue funcionando sob condições imprevistas, falhas de rede, regras de negócio complexas e concorrência.</p>
+
+            <div class="concept-card" style="border-left: 6px solid #2d7d46;">
+                <h4>🔬 1. Teste Unitário (Nível 1 - Componente)</h4>
+                <p><strong>Por que fazer:</strong> Valida a menor fração lógica do código (uma função, método ou cálculo) de forma estritamente isolada[cite: 1]. Impede que erros matemáticos ou validações simples quebrem a aplicação.</p>
+                <p><strong>Como é realizado:</strong> Utiliza dublês de teste (<em>Mocks / Stubs</em>)[cite: 1]. Não acessa banco de dados, arquivos reais ou APIs externas. Executa em milissegundos e aponta a linha exata do erro.</p>
+            </div>
+
+            <div class="concept-card" style="border-left: 6px solid #2a7a9a;">
+                <h4>🔗 2. Teste de Integração (Nível 1 - Interfaces & Transações)</h4>
+                <p><strong>Por que fazer:</strong> Componentes que funcionam sozinhos podem falhar quando conectados. Este nível valida o contrato de comunicação entre os módulos e a <em>atomicidade</em> (se o pagamento falhar, o estoque debitado deve sofrer rollback imediato).</p>
+                <p><strong>Como é realizado:</strong> Utiliza implementações reais e integradas (o <code>Carrinho</code> operando sobre o <code>Estoque</code> e <code>Pagamento</code> reais)[cite: 1].</p>
+            </div>
+
+            <div class="concept-card" style="border-left: 6px solid #c0762a;">
+                <h4>🌐 3. Teste de Sistema / E2E (Nível 2 - Fluxo Completo)</h4>
+                <p><strong>Por que fazer:</strong> Garante que toda a aplicação, do início ao fim, funcione na visão de ponta a ponta (End-to-End).</p>
+                <p><strong>Como é realizado:</strong> Simula a jornada real do usuário encadeando vários módulos em sequência: Catálogo &rarr; Montagem do Carrinho &rarr; Aplicação de Desconto &rarr; Checkout &rarr; Solicitação de Cancelamento/Estorno.</p>
+            </div>
+
+            <div class="concept-card" style="border-left: 6px solid #a94442;">
+                <h4>📋 4. Teste de Aceitação / BDD (Nível 2 - Requisitos do Negócio)</h4>
+                <p><strong>Por que fazer:</strong> Garante que o software entrega exatamente o que o cliente ou setor de negócios encomendou, evitando divergências entre código e requisitos contratuais.</p>
+                <p><strong>Como é realizado:</strong> Baseado em cenários comportamentais (BDD) na estrutura <strong>Dado-Quando-Então</strong> (<em>Given-When-Then</em>), validando regras como campanhas de Black Friday e cupons promocionais.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TAB 2: CATÁLOGO -->
+    <!-- ============================================================ -->
+    <div id="catalogo" class="tab-content">
         <div class="card">
             <h2>📦 Catálogo de 20 Produtos Disponíveis</h2>
-            <p>Este catálogo está embutido em <code>src/estoque.py</code> para alimentar os testes automatizados com múltiplos tipos de produtos, faixas de preço e controle de disponibilidade.</p>
+            <p>Catálogo embutido em <code>src/estoque.py</code> para alimentar os cenários de teste automatizados:</p>
 
             <table class="table-custom">
                 <thead>
@@ -158,13 +194,11 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- TAB 2: ESTRUTURA -->
+    <!-- TAB 3: ESTRUTURA -->
     <!-- ============================================================ -->
     <div id="estrutura" class="tab-content">
         <div class="card">
-            <h2>📁 Estrutura de Arquivos do Projeto</h2>
-            <p>Distribuição modular dos pacotes Python de regras de negócio, arquivos de teste por nível e pipeline de CI/CD do GitHub Actions:</p>
-
+            <h2>📁 Estrutura de Pastas e Módulos</h2>
             <div class="folder-tree">
 └── <span class="folder">loja_virtual/</span>
     ├── <span class="folder">.github/</span>
@@ -173,62 +207,60 @@
     ├── <span class="folder">src/</span>
     │   ├── <span class="file">__init__.py</span>              <span class="comment"># Pacote com exportação dos módulos</span>
     │   ├── <span class="file">carrinho.py</span>              <span class="comment"># Carrinho com Checkout Atômico e Rollback</span>
-    │   ├── <span class="file">estoque.py</span>               <span class="comment"># Gestão de inventário e Catálogo de 20 produtos</span>
-    │   └── <span class="file">pagamento.py</span>             <span class="comment"># Processamento, Gateways e Estorno/Cancelamento</span>
+    │   ├── <span class="file">estoque.py</span>               <span class="comment"># Gestão de inventário e Catálogo com 20 itens</span>
+    │   └── <span class="file">pagamento.py</span>             <span class="comment"># Gateways de Pagamento e Estorno</span>
     ├── <span class="folder">tests/</span>
     │   ├── <span class="file">__init__.py</span>              <span class="comment"># Pacote tests</span>
     │   ├── <span class="file">test_carrinho_unit.py</span>    <span class="comment"># Nível 1: Testes Unitários com Mocks</span>
-    │   ├── <span class="file">test_carrinho_integracao.py</span> <span class="comment"># Nível 1: Testes de Integração e Atomicidade</span>
+    │   ├── <span class="file">test_carrinho_integracao.py</span> <span class="comment"># Nível 1: Testes de Integração e Rollback</span>
     │   ├── <span class="file">test_sistema.py</span>          <span class="comment"># Nível 2: Testes E2E de Sistema</span>
     │   └── <span class="file">test_aceitacao.py</span>        <span class="comment"># Nível 2: Critérios de Aceitação BDD</span>
-    ├── <span class="file">requirements.txt</span>             <span class="comment"># Dependências de desenvolvimento e teste</span>
-    ├── <span class="file">pytest.ini</span>                   <span class="comment"># Configuração dos 4 marcadores (markers)</span>
-    └── <span class="file">index.html</span>                   <span class="comment"># Guia interativo (GitHub Pages)</span>
+    ├── <span class="file">requirements.txt</span>             <span class="comment"># Dependências do projeto</span>
+    ├── <span class="file">pytest.ini</span>                   <span class="comment"># Configuração dos marcadores de teste</span>
+    └── <span class="file">index.html</span>                   <span class="comment"># Guia e Documentação Interativa</span>
             </div>
         </div>
     </div>
 
     <!-- ============================================================ -->
-    <!-- TAB 3: OS 4 NÍVEIS DE TESTE -->
+    <!-- TAB 4: A PIRÂMIDE DE TESTES -->
     <!-- ============================================================ -->
     <div id="niveis" class="tab-content">
         <div class="card">
-            <h2>🧪 A Pirâmide de Testes Completa</h2>
-            <p>Cada nível de teste possui um objetivo pedagógico e técnico específico no ciclo de vida de desenvolvimento de software (QA):</p>
-
+            <h2>🧪 A Pirâmide de Testes</h2>
             <table class="table-custom">
                 <thead>
                     <tr>
                         <th>Nível de Teste</th>
-                        <th>O que valida?</th>
-                        <th>Por que é realizado?</th>
-                        <th>Dependência de Estoque/Pagamento</th>
+                        <th>Foco Principal</th>
+                        <th>Dependências</th>
+                        <th>Comando Seguro (Terminal)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><span class="pill unit">1. Unitário</span></td>
-                        <td>Lógica interna de cálculo de totais, percentuais de desconto e validação de parâmetros de entrada.</td>
-                        <td>Garante que cada método individualmente funcione de forma determinística em milissegundos.</td>
-                        <td><span class="pill unit">Mocks / Stubs</span> (Isolamento total)</td>
+                        <td>Cálculos, descontos e validações de argumentos.</td>
+                        <td>Mocks / Stubs</td>
+                        <td><code>python -m pytest -m unit -v</code></td>
                     </tr>
                     <tr>
                         <td><span class="pill integration">1. Integração</span></td>
-                        <td>Comunicação entre componentes (Carrinho ↔ Estoque ↔ Pagamento) e Rollback de Estoque em falhas financeiras.</td>
-                        <td>Identifica bugs em transações concorrentes e inconsistência no estado dos dados.</td>
-                        <td><span class="pill integration">Classes Reais</span> integradas</td>
+                        <td>Comunicação entre módulos e Rollback atômico.</td>
+                        <td>Classes Reais Integradas</td>
+                        <td><code>python -m pytest -m integration -v</code></td>
                     </tr>
                     <tr>
                         <td><span class="pill system">2. Sistema</span></td>
-                        <td>A jornada completa ponta a ponta (E2E): Catálogo $\rightarrow$ Carrinho $\rightarrow$ Pagamento $\rightarrow$ Estorno.</td>
-                        <td>Valida se todas as regras de negócio operam em harmonia como um ecossistema completo.</td>
-                        <td><span class="pill system">Fluxo Completo</span> integrado</td>
+                        <td>Jornada E2E completa: catálogo &rarr; compra &rarr; estorno.</td>
+                        <td>Fluxo Completo Integrado</td>
+                        <td><code>python -m pytest -m system -v</code></td>
                     </tr>
                     <tr>
                         <td><span class="pill acceptance">2. Aceitação</span></td>
-                        <td>Critérios de negócio no formato BDD (Dado-Quando-Então), como campanhas promocionais de Black Friday.</td>
-                        <td>Garante que o software atende ao que o cliente final e o setor de negócios esperam.</td>
-                        <td><span class="pill acceptance">Critérios de Usuário</span> (BDD)</td>
+                        <td>Validação de regras comerciais BDD (Black Friday).</td>
+                        <td>Critérios de Usuário</td>
+                        <td><code>python -m pytest -m acceptance -v</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -236,12 +268,12 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- TAB 4: COMANDOS POR OS -->
+    <!-- TAB 5: COMANDOS POR OS -->
     <!-- ============================================================ -->
     <div id="comandos" class="tab-content">
         <div class="card">
-            <h2>💻 Execução dos Testes por Sistema Operacional</h2>
-            <p>Escolha o seu sistema operacional abaixo para ver o passo a passo completo:</p>
+            <h2>💻 Comandos de Execução por Sistema Operacional</h2>
+            <p>Recomenda-se o uso de <code>python -m pytest</code> no Windows e <code>python3 -m pytest</code> no Linux/macOS para garantir a execução imediata sem depender do PATH do sistema[cite: 1]:</p>
 
             <div class="os-tabs">
                 <button class="os-tab active" onclick="openOsTab(event, 'cmd-windows')">🪟 Windows</button>
@@ -254,36 +286,36 @@
                 <div class="step">
                     <div class="number">1</div>
                     <div class="content">
-                        <strong>Instalar as dependências</strong>
-                        <div class="terminal"><span class="prompt">PS C:\loja_virtual&gt;</span> python -m pip install -r requirements.txt</div>
+                        <strong>Instalar dependências (dentro da pasta C:\loja_virtual)</strong>
+                        <div class="terminal"><span class="prompt">C:\loja_virtual&gt;</span> python -m pip install -r requirements.txt</div>
                     </div>
                 </div>
                 <div class="step">
                     <div class="number">2</div>
                     <div class="content">
-                        <strong>Executar todos os testes</strong>
-                        <div class="terminal"><span class="prompt">PS C:\loja_virtual&gt;</span> python -m pytest -v</div>
+                        <strong>Executar todos os 4 níveis de teste</strong>
+                        <div class="terminal"><span class="prompt">C:\loja_virtual&gt;</span> python -m pytest -v</div>
                     </div>
                 </div>
                 <div class="step">
                     <div class="number">3</div>
                     <div class="content">
-                        <strong>Executar testes específicos por nível</strong>
+                        <strong>Executar por nível individual</strong>
                         <div class="terminal">
-<span class="prompt">PS C:\loja_virtual&gt;</span> python -m pytest -m unit -v        <span class="comment"># Unitários</span><br>
-<span class="prompt">PS C:\loja_virtual&gt;</span> python -m pytest -m integration -v <span class="comment"># Integração</span><br>
-<span class="prompt">PS C:\loja_virtual&gt;</span> python -m pytest -m system -v      <span class="comment"># Sistema</span><br>
-<span class="prompt">PS C:\loja_virtual&gt;</span> python -m pytest -m acceptance -v  <span class="comment"># Aceitação</span>
+<span class="prompt">C:\loja_virtual&gt;</span> python -m pytest -m unit -v        <span class="comment"># Unitário</span><br>
+<span class="prompt">C:\loja_virtual&gt;</span> python -m pytest -m integration -v <span class="comment"># Integração</span><br>
+<span class="prompt">C:\loja_virtual&gt;</span> python -m pytest -m system -v      <span class="comment"># Sistema</span><br>
+<span class="prompt">C:\loja_virtual&gt;</span> python -m pytest -m acceptance -v  <span class="comment"># Aceitação</span>
                         </div>
                     </div>
                 </div>
                 <div class="step">
                     <div class="number">4</div>
                     <div class="content">
-                        <strong>Gerar e abrir relatório de cobertura de código no navegador</strong>
+                        <strong>Gerar e visualizar cobertura de código no navegador</strong>
                         <div class="terminal">
-<span class="prompt">PS C:\loja_virtual&gt;</span> python -m pytest --cov=src --cov-report=html<br>
-<span class="prompt">PS C:\loja_virtual&gt;</span> start htmlcov\index.html
+<span class="prompt">C:\loja_virtual&gt;</span> python -m pytest --cov=src --cov-report=html<br>
+<span class="prompt">C:\loja_virtual&gt;</span> start htmlcov\index.html
                         </div>
                     </div>
                 </div>
@@ -294,7 +326,7 @@
                 <div class="step">
                     <div class="number">1</div>
                     <div class="content">
-                        <strong>Instalar as dependências</strong>
+                        <strong>Instalar dependências</strong>
                         <div class="terminal"><span class="prompt">$</span> python3 -m pip install -r requirements.txt</div>
                     </div>
                 </div>
@@ -308,19 +340,19 @@
                 <div class="step">
                     <div class="number">3</div>
                     <div class="content">
-                        <strong>Executar testes específicos por nível</strong>
+                        <strong>Executar por nível</strong>
                         <div class="terminal">
-<span class="prompt">$</span> python3 -m pytest -m unit -v        <span class="comment"># Unitários</span><br>
-<span class="prompt">$</span> python3 -m pytest -m integration -v <span class="comment"># Integração</span><br>
-<span class="prompt">$</span> python3 -m pytest -m system -v      <span class="comment"># Sistema</span><br>
-<span class="prompt">$</span> python3 -m pytest -m acceptance -v  <span class="comment"># Aceitação</span>
+<span class="prompt">$</span> python3 -m pytest -m unit -v<br>
+<span class="prompt">$</span> python3 -m pytest -m integration -v<br>
+<span class="prompt">$</span> python3 -m pytest -m system -v<br>
+<span class="prompt">$</span> python3 -m pytest -m acceptance -v
                         </div>
                     </div>
                 </div>
                 <div class="step">
                     <div class="number">4</div>
                     <div class="content">
-                        <strong>Gerar e abrir relatório de cobertura no navegador</strong>
+                        <strong>Relatório de cobertura</strong>
                         <div class="terminal">
 <span class="prompt">$</span> python3 -m pytest --cov=src --cov-report=html<br>
 <span class="prompt">$</span> xdg-open htmlcov/index.html
@@ -334,33 +366,21 @@
                 <div class="step">
                     <div class="number">1</div>
                     <div class="content">
-                        <strong>Instalar as dependências</strong>
+                        <strong>Instalar dependências</strong>
                         <div class="terminal"><span class="prompt">$</span> python3 -m pip install -r requirements.txt</div>
                     </div>
                 </div>
                 <div class="step">
                     <div class="number">2</div>
                     <div class="content">
-                        <strong>Executar todos os testes</strong>
+                        <strong>Executar testes</strong>
                         <div class="terminal"><span class="prompt">$</span> python3 -m pytest -v</div>
                     </div>
                 </div>
                 <div class="step">
                     <div class="number">3</div>
                     <div class="content">
-                        <strong>Executar testes específicos por nível</strong>
-                        <div class="terminal">
-<span class="prompt">$</span> python3 -m pytest -m unit -v        <span class="comment"># Unitários</span><br>
-<span class="prompt">$</span> python3 -m pytest -m integration -v <span class="comment"># Integração</span><br>
-<span class="prompt">$</span> python3 -m pytest -m system -v      <span class="comment"># Sistema</span><br>
-<span class="prompt">$</span> python3 -m pytest -m acceptance -v  <span class="comment"># Aceitação</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="number">4</div>
-                    <div class="content">
-                        <strong>Gerar e abrir relatório de cobertura no navegador</strong>
+                        <strong>Relatório de cobertura</strong>
                         <div class="terminal">
 <span class="prompt">$</span> python3 -m pytest --cov=src --cov-report=html<br>
 <span class="prompt">$</span> open htmlcov/index.html
@@ -372,34 +392,88 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- TAB 5: ARQUIVOS & DOWNLOADS -->
+    <!-- TAB 6: TROUBLESHOOTING (PATH) -->
+    <!-- ============================================================ -->
+    <div id="troubleshooting" class="tab-content">
+        <div class="card">
+            <h2>⚠️ Troubleshooting: "pytest não é reconhecido como comando interno..."</h2>
+            
+            <div class="alert alert-warning">
+                <strong>O que significa esse aviso?</strong><br>
+                Significa que a biblioteca <code>pytest</code> já está instalada no Python, mas a pasta <code>Scripts</code> onde fica o executável não está registrada na variável de ambiente <strong>PATH</strong> do Windows.
+            </div>
+
+            <h3>💡 Solução 1: Execução Imediata (Sem alterar configurações)</h3>
+            <p>Basta chamar o Python explicitamente com a flag <code>-m</code>[cite: 1]:</p>
+            <div class="terminal">
+<span class="prompt">C:\loja_virtual&gt;</span> python -m pytest -v
+            </div>
+
+            <h3>🛠️ Solução 2: Registrar no PATH do Windows em definitivo</h3>
+            <div class="step">
+                <div class="number">1</div>
+                <div class="content">Pressione as teclas <strong>Win + R</strong> no teclado, digite <code>sysdm.cpl</code> e pressione <strong>Enter</strong>.</div>
+            </div>
+            <div class="step">
+                <div class="number">2</div>
+                <div class="content">Clique na aba <strong>Avançado</strong> e no botão <strong>Variáveis de Ambiente...</strong>.</div>
+            </div>
+            <div class="step">
+                <div class="number">3</div>
+                <div class="content">Na caixa superior (<em>Variáveis de usuário</em>), selecione a linha <strong>Path</strong> e clique em <strong>Editar...</strong>.</div>
+            </div>
+            <div class="step">
+                <div class="number">4</div>
+                <div class="content">
+                    Clique em <strong>Novo</strong> e cole o caminho da pasta de Scripts do seu Python (exemplo real):
+                    <div class="terminal" style="margin-top:8px;">C:\Users\Porketu\AppData\Local\Python\pythoncore-3.14-64\Scripts</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="number">5</div>
+                <div class="content">Clique em <strong>OK</strong> em todas as janelas, feche o PowerShell/Prompt e abra-o novamente na pasta <code>C:\loja_virtual</code>.</div>
+            </div>
+
+            <h3>🐧 E no Linux / macOS?</h3>
+            <div class="alert alert-info">
+                No Linux/macOS, o mesmo erro ocorre como <code>pytest: command not found</code> se instalado com <code>pip install --user</code>. Para resolver em definitivo, adicione a pasta de binários ao seu <code>~/.bashrc</code>:
+            </div>
+            <div class="terminal">
+<span class="prompt">$</span> echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc<br>
+<span class="prompt">$</span> source ~/.bashrc
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TAB 7: ARQUIVOS & DOWNLOADS -->
     <!-- ============================================================ -->
     <div id="arquivos" class="tab-content">
         <div class="card">
-            <h2>📄 Download Individual de Arquivos</h2>
+            <h2>📄 Download e Visualização dos Arquivos</h2>
             
             <h3>📦 Código Fonte (<code>src/</code>)</h3>
             <div class="btn-group">
-                <button class="btn-download purple" onclick="baixarArquivo('__init__', 'src')">⬇️ __init__.py</button>
-                <button class="btn-download green" onclick="baixarArquivo('estoque', 'src')">⬇️ estoque.py</button>
-                <button class="btn-download orange" onclick="baixarArquivo('carrinho', 'src')">⬇️ carrinho.py</button>
-                <button class="btn-download" onclick="baixarArquivo('pagamento', 'src')">⬇️ pagamento.py</button>
+                <button class="btn-download purple" onclick="baixarArquivo('__init__')">⬇️ __init__.py</button>
+                <button class="btn-download green" onclick="baixarArquivo('estoque')">⬇️ estoque.py</button>
+                <button class="btn-download orange" onclick="baixarArquivo('carrinho')">⬇️ carrinho.py</button>
+                <button class="btn-download" onclick="baixarArquivo('pagamento')">⬇️ pagamento.py</button>
             </div>
 
             <h3>🧪 Testes Automatizados (<code>tests/</code>)</h3>
             <div class="btn-group">
-                <button class="btn-download purple" onclick="baixarArquivo('init_tests', 'tests')">⬇️ __init__.py</button>
-                <button class="btn-download green" onclick="baixarArquivo('test_unit', 'tests')">⬇️ test_carrinho_unit.py</button>
-                <button class="btn-download orange" onclick="baixarArquivo('test_integracao', 'tests')">⬇️ test_carrinho_integracao.py</button>
-                <button class="btn-download" onclick="baixarArquivo('test_sistema', 'tests')">⬇️ test_sistema.py</button>
-                <button class="btn-download purple" onclick="baixarArquivo('test_aceitacao', 'tests')">⬇️ test_aceitacao.py</button>
+                <button class="btn-download purple" onclick="baixarArquivo('init_tests')">⬇️ __init__.py</button>
+                <button class="btn-download green" onclick="baixarArquivo('test_unit')">⬇️ test_carrinho_unit.py</button>
+                <button class="btn-download orange" onclick="baixarArquivo('test_integracao')">⬇️ test_carrinho_integracao.py</button>
+                <button class="btn-download" onclick="baixarArquivo('test_sistema')">⬇️ test_sistema.py</button>
+                <button class="btn-download purple" onclick="baixarArquivo('test_aceitacao')">⬇️ test_aceitacao.py</button>
             </div>
 
-            <h3>⚙️ Configurações</h3>
+            <h3>⚙️ Configuração & CI/CD</h3>
             <div class="btn-group">
-                <button class="btn-download" onclick="baixarArquivo('requirements', 'config')">⬇️ requirements.txt</button>
-                <button class="btn-download green" onclick="baixarArquivo('pytest_ini', 'config')">⬇️ pytest.ini</button>
-                <button class="btn-download orange" onclick="baixarArquivo('tests_yml', 'config')">⬇️ tests.yml (CI/CD)</button>
+                <button class="btn-download" onclick="baixarArquivo('requirements')">⬇️ requirements.txt</button>
+                <button class="btn-download green" onclick="baixarArquivo('pytest_ini')">⬇️ pytest.ini</button>
+                <button class="btn-download orange" onclick="baixarArquivo('tests_yml')">⬇️ tests.yml (CI/CD)</button>
             </div>
 
             <div class="alert alert-success" style="margin-top:20px;">
@@ -409,7 +483,7 @@
         </div>
 
         <div class="card">
-            <h2>🔍 Visualizador de Código com Realce de Sintaxe</h2>
+            <h2>🔍 Visualizador de Código Fonte</h2>
             <div class="btn-group">
                 <button class="btn-download green codigo-ativo" onclick="mostrarCodigo('estoque', event)">estoque.py</button>
                 <button class="btn-download orange" onclick="mostrarCodigo('carrinho', event)">carrinho.py</button>
@@ -421,51 +495,6 @@
             </div>
 
             <div id="codigo-exibido" class="code-block"></div>
-        </div>
-    </div>
-
-    <!-- ============================================================ -->
-    <!-- TAB 6: TROUBLESHOOTING (PATH) -->
-    <!-- ============================================================ -->
-    <div id="troubleshooting" class="tab-content">
-        <div class="card">
-            <h2>⚠️ Por que ocorre o erro "'pytest' não é reconhecido..."?</h2>
-            
-            <div class="alert alert-warning">
-                <strong>Explicação Técnica:</strong><br>
-                Quando você digita <code>pytest</code>, o sistema operacional procura um executável com esse nome nas pastas listadas na variável de ambiente <strong>PATH</strong>. Se a pasta <code>Scripts</code> (no Windows) ou <code>~/.local/bin</code> (no Linux) não estiver no PATH, o sistema emite o erro de comando não encontrado.
-            </div>
-
-            <h3>🛠️ Como corrigir de forma definitiva no Windows:</h3>
-            <div class="step">
-                <div class="number">1</div>
-                <div class="content">Pressione as teclas <strong>Win + R</strong>, digite <code>sysdm.cpl</code> e pressione <strong>Enter</strong>.</div>
-            </div>
-            <div class="step">
-                <div class="number">2</div>
-                <div class="content">Clique na aba <strong>Avançado</strong> e depois no botão <strong>Variáveis de Ambiente...</strong>.</div>
-            </div>
-            <div class="step">
-                <div class="number">3</div>
-                <div class="content">Em <em>Variáveis de usuário</em>, selecione a linha <strong>Path</strong> e clique em <strong>Editar...</strong>.</div>
-            </div>
-            <div class="step">
-                <div class="number">4</div>
-                <div class="content">Clique em <strong>Novo</strong> e cole o caminho da pasta de scripts do seu Python (ex: <code>C:\Users\SEU_USUARIO\AppData\Local\Programs\Python\Python311\Scripts</code>).</div>
-            </div>
-            <div class="step">
-                <div class="number">5</div>
-                <div class="content">Clique em <strong>OK</strong>, feche e abra novamente o PowerShell.</div>
-            </div>
-
-            <h3>🐧 Como corrigir no Linux / macOS:</h3>
-            <div class="alert alert-info">
-                No terminal do Linux ou macOS, adicione o diretório local de binários ao seu arquivo de perfil executando:
-            </div>
-            <div class="terminal">
-<span class="prompt">$</span> echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc<br>
-<span class="prompt">$</span> source ~/.bashrc
-            </div>
         </div>
     </div>
 
@@ -500,7 +529,7 @@ const CODIGOS = {
 
     'estoque': `"""\nMódulo Estoque - Gerencia o catálogo e inventário de 20 produtos diversos\n"""\nfrom decimal import Decimal\nfrom typing import Dict, Optional\n\n\nclass Estoque:\n    def __init__(self, popular_padrao: bool = False):\n        self._produtos: Dict[str, Dict] = {}\n        if popular_padrao:\n            self.carregar_catalogo_padrao()\n    \n    def cadastrar(self, sku: str, quantidade: int, preco: Optional[Decimal] = None, nome: Optional[str] = None) -> None:\n        if sku in self._produtos:\n            self._produtos[sku]["quantidade"] += quantidade\n            if preco is not None:\n                self._produtos[sku]["preco"] = preco\n            if nome is not None:\n                self._produtos[sku]["nome"] = nome\n        else:\n            self._produtos[sku] = {\n                "nome": nome or sku,\n                "quantidade": quantidade,\n                "preco": preco\n            }\n    \n    def verificar_disponibilidade(self, sku: str, quantidade: int = 1) -> bool:\n        if sku not in self._produtos:\n            return False\n        return self._produtos[sku]["quantidade"] >= quantidade\n    \n    def baixar(self, sku: str, quantidade: int) -> bool:\n        if not self.verificar_disponibilidade(sku, quantidade):\n            return False\n        self._produtos[sku]["quantidade"] -= quantidade\n        return True\n    \n    def quantidade_disponivel(self, sku: str) -> int:\n        if sku not in self._produtos:\n            return 0\n        return self._produtos[sku]["quantidade"]\n    \n    def obter_preco(self, sku: str) -> Optional[Decimal]:\n        if sku not in self._produtos:\n            return None\n        return self._produtos[sku].get("preco")\n\n    def obter_nome(self, sku: str) -> Optional[str]:\n        if sku not in self._produtos:\n            return None\n        return self._produtos[sku].get("nome")\n\n    def carregar_catalogo_padrao(self) -> None:\n        """Cadastra 20 produtos variados para testes práticos."""\n        catalogo = [\n            ("SKU-NOTE-01", "Notebook Gamer 16GB SSD 512GB", 10, Decimal("4500.00")),\n            ("SKU-MOUS-02", "Mouse Sem Fio Ergonômico", 50, Decimal("120.00")),\n            ("SKU-TECL-03", "Teclado Mecânico RGB Switch Blue", 25, Decimal("350.00")),\n            ("SKU-MONI-04", "Monitor Curvo 27 Pol 165Hz", 15, Decimal("1400.00")),\n            ("SKU-HEAD-05", "Headset Gamer 7.1 Surround", 30, Decimal("280.00")),\n            ("SKU-WEBC-06", "Webcam Full HD 1080p com Microfone", 40, Decimal("210.00")),\n            ("SKU-CADE-07", "Cadeira Ergonômica Presidente", 8, Decimal("1100.00")),\n            ("SKU-MESA-08", "Mesa Gamer com Regulagem de Altura", 5, Decimal("1850.00")),\n            ("SKU-PADM-09", "Mousepad Speed Extra Grande 90x40cm", 60, Decimal("75.00")),\n            ("SKU-SUPM-10", "Suporte Articulado a Gás para 2 Monitores", 20, Decimal("320.00")),\n            ("SKU-SMAR-11", "Smartphone 128GB 5G Câmera Tripla", 12, Decimal("2400.00")),\n            ("SKU-TABL-12", "Tablet 10 Pol 64GB com Caneta", 14, Decimal("1600.00")),\n            ("SKU-FONE-13", "Fone Bluetooth TWS com Cancelamento de Ruído", 45, Decimal("190.00")),\n            ("SKU-RELO-14", "Smartwatch Esportivo à Prova d'Água", 22, Decimal("450.00")),\n            ("SKU-CAIX-15", "Caixa de Som Portátil Bluetooth 20W", 35, Decimal("230.00")),\n            ("SKU-CABO-16", "Cabo HDMI 2.1 Ultra High Speed 2m", 80, Decimal("45.00")),\n            ("SKU-PEND-17", "Pendrive 128GB USB 3.2", 100, Decimal("65.00")),\n            ("SKU-SSDX-18", "SSD NVMe M.2 1TB 3500MB/s", 18, Decimal("420.00")),\n            ("SKU-ROUT-19", "Roteador Wi-Fi 6 Gigabit Dual Band", 16, Decimal("380.00")),\n            ("SKU-ESTB-20", "Estabilizador e Filtro de Linha 8 Tomadas", 0, Decimal("110.00"))\n        ]\n        for sku, nome, qtd, preco in catalogo:\n            self.cadastrar(sku, qtd, preco, nome)`,
 
-    'carrinho': `"""\nMódulo CarrinhoDeCompras - Gerencia o carrinho com atomicidade total e rollback\n"""\nfrom decimal import Decimal\nfrom typing import List, Dict, Optional, Tuple\nfrom .estoque import Estoque\nfrom .pagamento import Pagamento, MetodoPagamento, StatusPagamento\n\n\nclass CarrinhoDeCompras:\n    def __init__(self, estoque: Estoque, gateway_pagamento: Optional[Pagamento] = None):\n        self._estoque = estoque\n        self._pagamento = gateway_pagamento or Pagamento()\n        self._itens: List[Dict] = []\n        self._desconto_percentual: Decimal = Decimal("0")\n    \n    def adicionar(self, sku: str, quantidade: int, preco_unitario: Optional[Decimal] = None) -> bool:\n        if quantidade <= 0:\n            raise ValueError("Quantidade deve ser maior que zero")\n        if not self._estoque.verificar_disponibilidade(sku, quantidade):\n            return False\n        if preco_unitario is None:\n            preco_unitario = self._estoque.obter_preco(sku)\n            if preco_unitario is None:\n                return False\n        self._itens.append({\n            "sku": sku,\n            "nome": self._estoque.obter_nome(sku) or sku,\n            "quantidade": quantidade,\n            "preco_unitario": preco_unitario\n        })\n        return True\n    \n    def remover(self, sku: str) -> bool:\n        for i, item in enumerate(self._itens):\n            if item["sku"] == sku:\n                del self._itens[i]\n                return True\n        return False\n    \n    def calcular_total(self) -> Decimal:\n        total = Decimal("0")\n        for item in self._itens:\n            total += item["quantidade"] * item["preco_unitario"]\n        if self._desconto_percentual > 0:\n            desconto = total * (self._desconto_percentual / Decimal("100"))\n            total -= desconto\n        return total\n    \n    def aplicar_desconto(self, percentual: Decimal) -> None:\n        if 0 <= percentual <= 100:\n            self._desconto_percentual = percentual\n        else:\n            raise ValueError("Percentual deve estar entre 0 e 100")\n    \n    def finalizar_compra(self, metodo_pagamento: MetodoPagamento, dados_pagamento: Optional[Dict] = None) -> Tuple[bool, Decimal, Optional[str]]:\n        """\n        Checkout Atômico:\n        1. Validação prévia de estoque.\n        2. Débito no inventário.\n        3. Cobrança financeira.\n        4. Rollback automático se o pagamento for recusado.\n        """\n        if not self._itens:\n            return False, Decimal("0"), "Carrinho vazio"\n\n        total = self.calcular_total()\n\n        for item in self._itens:\n            if not self._estoque.verificar_disponibilidade(item["sku"], item["quantidade"]):\n                return False, Decimal("0"), "Estoque insuficiente"\n\n        itens_debitados = []\n        for item in self._itens:\n            if self._estoque.baixar(item["sku"], item["quantidade"]):\n                itens_debitados.append(item)\n\n        res_pagamento = self._pagamento.processar(total, metodo_pagamento, dados_pagamento)\n        \n        if res_pagamento["status"] != StatusPagamento.APROVADO:\n            for item in itens_debitados:\n                self._estoque.cadastrar(item["sku"], item["quantidade"])\n            return False, total, res_pagamento.get("motivo", "Pagamento recusado")\n\n        self._itens.clear()\n        self._desconto_percentual = Decimal("0")\n        return True, total, res_pagamento["transacao_id"]\n    \n    def listar_itens(self) -> List[Dict]:\n        return self._itens.copy()\n    \n    def quantidade_itens(self) -> int:\n        return len(self._itens)\n    \n    def limpar(self) -> None:\n        self._itens.clear()\n        self._desconto_percentual = Decimal("0")`,
+    'carrinho': `"""\nMódulo CarrinhoDeCompras - Gerencia o carrinho com atomicidade total e rollback\n"""\nfrom decimal import Decimal\nfrom typing import List, Dict, Optional, Tuple\nfrom .estoque import Estoque\nfrom .pagamento import Pagamento, MetodoPagamento, StatusPagamento\n\n\nclass CarrinhoDeCompras:\n    def __init__(self, estoque: Estoque, gateway_pagamento: Optional[Pagamento] = None):\n        self._estoque = estoque\n        self._pagamento = gateway_pagamento or Pagamento()\n        self._itens: List[Dict] = []\n        self._desconto_percentual: Decimal = Decimal("0")\n    \n    def adicionar(self, sku: str, quantidade: int, preco_unitario: Optional[Decimal] = None) -> bool:\n        if quantidade <= 0:\n            raise ValueError("Quantidade deve ser maior que zero")\n        if not self._estoque.verificar_disponibilidade(sku, quantidade):\n            return False\n        if preco_unitario is None:\n            preco_unitario = self._estoque.obter_preco(sku)\n            if preco_unitario is None:\n                return False\n        self._itens.append({\n            "sku": sku,\n            "nome": self._estoque.obter_nome(sku) or sku,\n            "quantidade": quantidade,\n            "preco_unitario": preco_unitario\n        })\n        return True\n    \n    def remover(self, sku: str) -> bool:\n        for i, item in enumerate(self._itens):\n            if item["sku"] == sku:\n                del self._itens[i]\n                return True\n        return False\n    \n    def calcular_total(self) -> Decimal:\n        total = Decimal("0")\n        for item in self._itens:\n            total += item["quantidade"] * item["preco_unitario"]\n        if self._desconto_percentual > 0:\n            desconto = total * (self._desconto_percentual / Decimal("100"))\n            total -= desconto\n        return total\n    \n    def aplicar_desconto(self, percentual: Decimal) -> None:\n        if 0 <= percentual <= 100:\n            self._desconto_percentual = percentual\n        else:\n            raise ValueError("Percentual deve estar entre 0 e 100")\n    \n    def finalizar_compra(self, metodo_pagamento: MetodoPagamento, dados_pagamento: Optional[Dict] = None) -> Tuple[bool, Decimal, Optional[str]]:\n        if not self._itens:\n            return False, Decimal("0"), "Carrinho vazio"\n\n        total = self.calcular_total()\n\n        for item in self._itens:\n            if not self._estoque.verificar_disponibilidade(item["sku"], item["quantidade"]):\n                return False, Decimal("0"), "Estoque insuficiente"\n\n        itens_debitados = []\n        for item in self._itens:\n            if self._estoque.baixar(item["sku"], item["quantidade"]):\n                itens_debitados.append(item)\n\n        res_pagamento = self._pagamento.processar(total, metodo_pagamento, dados_pagamento)\n        \n        if res_pagamento["status"] != StatusPagamento.APROVADO:\n            for item in itens_debitados:\n                self._estoque.cadastrar(item["sku"], item["quantidade"])\n            return False, total, res_pagamento.get("motivo", "Pagamento recusado")\n\n        self._itens.clear()\n        self._desconto_percentual = Decimal("0")\n        return True, total, res_pagamento["transacao_id"]\n    \n    def listar_itens(self) -> List[Dict]:\n        return self._itens.copy()\n    \n    def quantidade_itens(self) -> int:\n        return len(self._itens)\n    \n    def limpar(self) -> None:\n        self._itens.clear()\n        self._desconto_percentual = Decimal("0")`,
 
     'pagamento': `"""\nMódulo Pagamento - Processa transações financeiras e estornos\n"""\nfrom decimal import Decimal\nfrom typing import Optional, Dict, Any\nfrom enum import Enum\n\n\nclass StatusPagamento(Enum):\n    PENDENTE = "pendente"\n    PROCESSANDO = "processando"\n    APROVADO = "aprovado"\n    RECUSADO = "recusado"\n    CANCELADO = "cancelado"\n\n\nclass MetodoPagamento(Enum):\n    CARTAO_CREDITO = "cartao_credito"\n    CARTAO_DEBITO = "cartao_debito"\n    PIX = "pix"\n    BOLETO = "boleto"\n    TRANSFERENCIA = "transferencia"\n\n\nclass Pagamento:\n    def __init__(self):\n        self._transacoes: Dict[str, Dict] = {}\n        self._id_counter = 0\n    \n    def processar(self, valor: Decimal, metodo: MetodoPagamento,\n                  dados: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:\n        self._id_counter += 1\n        transacao_id = f"TRX-{self._id_counter:06d}"\n        if valor <= 0:\n            return {\n                "sucesso": False,\n                "transacao_id": transacao_id,\n                "status": StatusPagamento.RECUSADO,\n                "motivo": "Valor inválido"\n            }\n        \n        aprovado = valor <= Decimal("15000.00")\n        transacao = {\n            "transacao_id": transacao_id,\n            "valor": valor,\n            "metodo": metodo.value,\n            "dados": dados or {},\n            "status": StatusPagamento.APROVADO if aprovado else StatusPagamento.RECUSADO,\n            "motivo": None if aprovado else "Valor acima do limite permitido"\n        }\n        self._transacoes[transacao_id] = transacao\n        return transacao\n    \n    def obter_transacao(self, transacao_id: str) -> Optional[Dict[str, Any]]:\n        return self._transacoes.get(transacao_id)\n    \n    def cancelar(self, transacao_id: str) -> bool:\n        transacao = self._transacoes.get(transacao_id)\n        if not transacao:\n            return False\n        if transacao["status"] in [StatusPagamento.APROVADO, StatusPagamento.PENDENTE]:\n            transacao["status"] = StatusPagamento.CANCELADO\n            return True\n        return False`,
 
@@ -508,7 +537,7 @@ const CODIGOS = {
 
     'test_unit': `"""\nNível 1: Testes Unitários com Mocks\n"""\nimport pytest\nfrom decimal import Decimal\nfrom unittest.mock import Mock\nfrom src.carrinho import CarrinhoDeCompras\nfrom src.estoque import Estoque\nfrom src.pagamento import Pagamento, MetodoPagamento, StatusPagamento\n\npytestmark = pytest.mark.unit\n\n\nclass TestCarrinhoUnitario:\n    @pytest.fixture\n    def setup_mocks(self):\n        estoque_stub = Mock(spec=Estoque)\n        estoque_stub.verificar_disponibilidade.return_value = True\n        estoque_stub.obter_preco.return_value = Decimal("4500.00")\n        estoque_stub.obter_nome.return_value = "Notebook Gamer"\n        \n        pagamento_mock = Mock(spec=Pagamento)\n        pagamento_mock.processar.return_value = {\n            "sucesso": True,\n            "status": StatusPagamento.APROVADO,\n            "transacao_id": "TRX-UNIT-001"\n        }\n        return CarrinhoDeCompras(estoque_stub, pagamento_mock), estoque_stub, pagamento_mock\n\n    def test_adicionar_item_com_sucesso(self, setup_mocks):\n        carrinho, _, _ = setup_mocks\n        assert carrinho.adicionar("SKU-NOTE-01", 1) is True\n        assert carrinho.quantidade_itens() == 1\n\n    def test_calcular_total_com_desconto(self, setup_mocks):\n        carrinho, _, _ = setup_mocks\n        carrinho.adicionar("SKU-NOTE-01", 2, Decimal("4500.00"))\n        carrinho.aplicar_desconto(Decimal("10"))\n        assert carrinho.calcular_total() == Decimal("8100.00")\n\n    def test_validar_quantidade_invalida(self, setup_mocks):\n        carrinho, _, _ = setup_mocks\n        with pytest.raises(ValueError, match="Quantidade deve ser maior que zero"):\n            carrinho.adicionar("SKU-MOUS-02", 0)`,
 
-    'test_integracao': `"""\nNível 1: Testes de Integração com Estoque Real e Rollback\n"""\nimport pytest\nfrom decimal import Decimal\nfrom src.carrinho import CarrinhoDeCompras\nfrom src.estoque import Estoque\nfrom src.pagamento import Pagamento, MetodoPagamento\n\npytestmark = pytest.mark.integration\n\n\nclass TestCarrinhoIntegracao:\n    @pytest.fixture\n    def setup(self):\n        estoque = Estoque(popular_padrao=True)\n        pagamento = Pagamento()\n        return CarrinhoDeCompras(estoque, pagamento), estoque, pagamento\n\n    def test_bloqueio_item_sem_estoque(self, setup):\n        carrinho, _, _ = setup\n        assert carrinho.adicionar("SKU-ESTB-20", 1) is False\n\n    def test_rollback_de_estoque_apos_recusa_pagamento(self, setup):\n        carrinho, estoque, _ = setup\n        carrinho.adicionar("SKU-NOTE-01", 4) # R$ 18.000 (excede limite)\n        sucesso, _, motivo = carrinho.finalizar_compra(MetodoPagamento.CARTAO_CREDITO)\n        assert sucesso is False\n        assert motivo == "Valor acima do limite permitido"\n        assert estoque.quantidade_disponivel("SKU-NOTE-01") == 10`,
+    'test_integracao': `"""\nNível 1: Testes de Integração com Estoque Real e Rollback\n"""\nimport pytest\nfrom decimal import Decimal\nfrom src.carrinho import CarrinhoDeCompras\nfrom src.estoque import Estoque\nfrom src.pagamento import Pagamento, MetodoPagamento\n\npytestmark = pytest.mark.integration\n\n\nclass TestCarrinhoIntegracao:\n    @pytest.fixture\n    def setup(self):\n        estoque = Estoque(popular_padrao=True)\n        pagamento = Pagamento()\n        return CarrinhoDeCompras(estoque, pagamento), estoque, pagamento\n\n    def test_bloqueio_item_sem_estoque(self, setup):\n        carrinho, _, _ = setup\n        assert carrinho.adicionar("SKU-ESTB-20", 1) is False\n\n    def test_rollback_de_estoque_apos_recusa_pagamento(self, setup):\n        carrinho, estoque, _ = setup\n        carrinho.adicionar("SKU-NOTE-01", 4) # R$ 18.000 (excede limite de R$ 15.000)\n        sucesso, _, motivo = carrinho.finalizar_compra(MetodoPagamento.CARTAO_CREDITO)\n        assert sucesso is False\n        assert motivo == "Valor acima do limite permitido"\n        assert estoque.quantidade_disponivel("SKU-NOTE-01") == 10`,
 
     'test_sistema': `"""\nNível 2: Testes E2E de Sistema\n"""\nimport pytest\nfrom decimal import Decimal\nfrom src.carrinho import CarrinhoDeCompras\nfrom src.estoque import Estoque\nfrom src.pagamento import Pagamento, MetodoPagamento, StatusPagamento\n\npytestmark = pytest.mark.system\n\n\nclass TestSistemaCompleto:\n    def test_jornada_completa_home_office(self):\n        estoque = Estoque(popular_padrao=True)\n        pagamento = Pagamento()\n        carrinho = CarrinhoDeCompras(estoque, pagamento)\n\n        carrinho.adicionar("SKU-MESA-08", 1) # R$ 1850.00\n        carrinho.adicionar("SKU-CADE-07", 1) # R$ 1100.00\n        carrinho.aplicar_desconto(Decimal("5"))\n\n        sucesso, total, trx = carrinho.finalizar_compra(MetodoPagamento.CARTAO_CREDITO)\n        assert sucesso is True\n        assert total == Decimal("2802.50")\n        assert estoque.quantidade_disponivel("SKU-MESA-08") == 4\n\n        cancelado = pagamento.cancelar(trx)\n        assert cancelado is True\n        assert pagamento.obter_transacao(trx)["status"] == StatusPagamento.CANCELADO`,
 
